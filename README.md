@@ -592,3 +592,54 @@ Contributions are welcome — new diagram types, import grammar support, example
 Made by **Cathryn Lavery** — founder of [BestSelf.co](https://bestself.co?utm_source=diagram-design&utm_medium=readme&utm_campaign=github&utm_content=bio). I write about AI, entrepreneurship, and designing nice-looking things at [littlemight.com](https://littlemight.com?utm_source=diagram-design&utm_medium=readme&utm_campaign=github&utm_content=bio) — blog + newsletter.
 
 If this is useful, **star the repo** and come [say hi on X](https://x.com/cathrynlavery).
+
+---
+
+<!-- fork-notes:msarmengolAsepeyo:start -->
+## Fork notes (msarmengolAsepeyo)
+
+This clone is a fork of [`cathrynlavery/diagram-design`](https://github.com/cathrynlavery/diagram-design), kept locally at
+`C:\Users\25863\misProyectos\diagram-design` and wired into Claude Code as a **global** skill (available in every project,
+not tied to one repo).
+
+### Git remotes
+
+- `origin` → `https://github.com/msarmengolAsepeyo/diagram-design.git` (this fork — push allowed)
+- `upstream` → `https://github.com/cathrynlavery/diagram-design.git` (author's repo — push disabled, fetch only)
+
+To pull in the latest version from the author:
+
+```sh
+git fetch upstream
+git merge --ff-only upstream/main
+git push origin main
+```
+
+### How Claude Code finds it
+
+Two Windows directory junctions (`mklink /J` — no admin/Developer Mode required) link this repo into the user-level
+Claude Code config, so it works the same as a proper plugin install without depending on a marketplace entry:
+
+| Junction | Target |
+|---|---|
+| `~/.claude/skills/diagram-design` | `misProyectos/diagram-design/skills/diagram-design` |
+| `~/.claude/commands/diagram-design` | `misProyectos/diagram-design/commands` |
+
+Because these are junctions (not copies), `git pull`/`git merge` here is reflected immediately — no re-linking needed
+unless the repo itself is moved to a different path.
+
+### Slash commands available in Claude Code
+
+Since the commands live under a `diagram-design/` subfolder, invoke them namespaced:
+
+| Command | Purpose |
+|---|---|
+| `/diagram-design:doctor` | One-shot environment diagnostics for Diagram Design readiness (`--strict`, `--json`). |
+| `/diagram-design:export-diagram` | Export a diagram-design HTML file to `.svg`/`.png` next to the source. |
+| `/diagram-design:import-drawio` | Redraw a `.drawio`/`.drawio.png`/`.drawio.svg` file as an editorial diagram (choose format, size, detail, audience, type). |
+| `/diagram-design:import-mermaid` | Redraw a Mermaid `.mmd` source as an editorial diagram (same options as above). |
+| `/diagram-design:profile` | Save, load, inspect, update, reset, or delete diagram-design client (brand) profiles. |
+
+You can also just describe what you want ("draw an architecture diagram of X") — the `diagram-design` skill activates
+automatically without needing a slash command.
+<!-- fork-notes:msarmengolAsepeyo:end -->
