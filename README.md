@@ -1,6 +1,9 @@
-# Diagram Design
-
-**Editorial diagrams your designer won't hate.**
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/hero/hero-dark.webp">
+    <img alt="Diagram Design. Editorial diagrams your designer won't hate." src="docs/hero/hero-light.webp">
+  </picture>
+</h1>
 
 <a href="https://trendshift.io/repositories/26141?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-26141" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/26141" alt="cathrynlavery%2Fdiagram-design | Trendshift" width="250" height="55"/></a>
 
@@ -14,9 +17,11 @@
 
 *New in 2.5.10: ten more layout grammars — Sankey, fishbone, Wardley map, kanban, user journey, deployment, dependency graph, UML class, story map, and database schema.*
 
-39 editorial diagram types for Claude Code, Codex, Factory Droid, Pi, and Agent Skills-compatible hosts. Self-contained HTML + SVG. No shadows. No Mermaid slop. Semantic patterns describe behavior separately from layout, so a queue, policy trace, or trust boundary can use the nearest existing type without expanding the type count. Static HTML remains the default; optional motion is available for ordered explanations. The skill also redraws draw.io or Mermaid sources at a chosen format, size, and detail level.
+Editorial diagram types for Claude Code, Codex, Factory Droid, Pi, and Agent Skills-compatible hosts. Self-contained HTML + SVG. No shadows. No Mermaid slop. Semantic patterns describe behavior separately from layout, so a queue, policy trace, or trust boundary can use the nearest existing type without expanding the type count. Static HTML remains the default; optional motion is available for ordered explanations. The skill also redraws draw.io, Mermaid, or Excalidraw sources at a chosen format, size, and detail level.
 
 No Figma. No generic rounded boxes. No 30-minute color-picking sessions.
+
+Project site: [diagramdesign.dev](https://diagramdesign.dev?utm_source=diagram-design&utm_medium=readme&utm_campaign=github&utm_content=intro)
 
 ---
 
@@ -24,7 +29,7 @@ No Figma. No generic rounded boxes. No 30-minute color-picking sessions.
 
 I write at [littlemight.com](https://littlemight.com?utm_source=diagram-design&utm_medium=readme&utm_campaign=github&utm_content=intro) (and run [BestSelf.co](https://bestself.co?utm_source=diagram-design&utm_medium=readme&utm_campaign=github&utm_content=intro) on the side). Every time I needed a diagram — an architecture sketch, a flowchart, a pyramid of what matters most — I'd ask Claude and get back a generic rounded-box thing that looked nothing like the rest of the site. I'd either fight with Figma for 30 minutes or just skip the diagram.
 
-So I built a Claude Code skill for it. Thirty-nine visual types, editorial quality, matches your brand in 60 seconds by reading your website.
+So I built a Claude Code skill for it. Editorial-quality visual types, matched to your brand in 60 seconds by reading your website.
 
 > *The highest-quality move is usually deletion.* Every node earns its place. The accent color is reserved for the 1–2 things the reader should look at first. Target density: 4/10.
 
@@ -32,7 +37,7 @@ So I built a Claude Code skill for it. Thirty-nine visual types, editorial quali
 
 ## What it makes
 
-All 39 visual types ship in three static variants: minimal light, minimal dark, and full-editorial. Open any of them directly in a browser. There is no build step, JavaScript, or external image dependency.
+Every visual type ships in three static variants: minimal light, minimal dark, and full-editorial. Open any of them directly in a browser. There is no build step, JavaScript, or external image dependency.
 
 <table>
 <tr>
@@ -100,15 +105,33 @@ All 39 visual types ship in three static variants: minimal light, minimal dark, 
   <td align="center"><a href="docs/screenshots/db-schema.png"><img src="docs/screenshots/thumbs/db-schema.webp" alt="Database schema"></a><br><b>Database schema</b><br><sub>Physical tables + column FKs</sub></td>
   <td align="center"><a href="docs/screenshots/polar.png"><img src="docs/screenshots/thumbs/polar.webp" alt="Polar chart"></a><br><b>Polar chart</b><br><sub>Cyclic magnitude · linear radius</sub></td>
 </tr>
+<tr>
+  <td align="center" width="33%"><a href="docs/screenshots/waterfall.png"><img src="docs/screenshots/thumbs/waterfall.webp" alt="Waterfall"></a><br><b>Waterfall</b><br><sub>Running total + signed bridges</sub></td>
+  <td align="center" width="33%"><a href="docs/screenshots/architecture-delta.png"><img src="docs/screenshots/thumbs/architecture-delta.webp" alt="Architecture delta"></a><br><b>Architecture delta</b><br><sub>Before · Changes · After topology</sub></td>
+  <td align="center" width="33%"><a href="docs/screenshots/exploded.png"><img src="docs/screenshots/thumbs/exploded.webp" alt="Exploded axonometric"></a><br><b>Exploded axonometric</b><br><sub>Parts pulled apart on one axis</sub></td>
+</tr>
+<tr>
+  <td align="center" width="33%"><a href="docs/screenshots/axonometric-plan.png"><img src="docs/screenshots/thumbs/axonometric-plan.webp" alt="Axonometric plan"></a><br><b>Axonometric plan</b><br><sub>Rooms and buildings on one plate</sub></td>
+  <td align="center" width="33%"></td>
+  <td align="center" width="33%"></td>
+</tr>
 </table>
 
-The v2.5.10 release added the final ten types above. Compare their light, dark, and full-editorial variants in the [30-variant contact sheet](.github/pr-previews/editorial-diagrams-2.5.10.jpg).
+Architecture delta compares synchronized topologies through a Before · Changes · After ledger of added, removed, changed, moved, and rewired objects. See its [reference](skills/diagram-design/references/type-architecture-delta.md) and [order-fulfilment example](skills/diagram-design/assets/example-architecture-delta.html). Attribute-only comparisons remain tables; a single snapshot uses Architecture.
 
-**Browse the live gallery:** [cathrynlavery.github.io/diagram-design](https://cathrynlavery.github.io/diagram-design/) — or open [`skills/diagram-design/assets/index.html`](skills/diagram-design/assets/index.html) locally to flip through all 39 diagrams with light / dark / full-editorial tabs.
+Exploded axonometric draws one object in 2:1 dimetric projection with its parts lifted apart at equal gaps: a [phone teardown](skills/diagram-design/assets/example-exploded-phone.html), an [unboxing](skills/diagram-design/assets/example-exploded-unboxing.html), an [app stack](skills/diagram-design/assets/example-exploded.html), an [AI agent stack](skills/diagram-design/assets/example-exploded-ai-stack.html), or a [mechanical keyboard](skills/diagram-design/assets/example-exploded-keyboard.html). Every coordinate comes from one projection function, and the [animated phone](skills/diagram-design/assets/example-exploded-phone-animated.html) opens assembled and explodes once. See its [reference](skills/diagram-design/references/type-exploded.md).
+
+Axonometric plan uses the same projection for one floor or one site: walls cut at desk height so every room reads from a single view, or buildings on a campus tagged by build phase. See the [office floor](skills/diagram-design/assets/example-axonometric-plan.html), the [campus](skills/diagram-design/assets/example-axonometric-plan-campus.html), the [coffee shop](skills/diagram-design/assets/example-axonometric-plan-coffee-shop.html), the [fulfillment floor](skills/diagram-design/assets/example-axonometric-plan-warehouse.html), the [phased campus animation](skills/diagram-design/assets/example-axonometric-plan-campus-animated.html), and the [reference](skills/diagram-design/references/type-axonometric-plan.md).
+
+The v2.5.10 release added ten layout grammars. Compare their light, dark, and full-editorial variants in the [30-variant contact sheet](.github/pr-previews/editorial-diagrams-2.5.10.jpg).
+
+**Browse the live gallery:** [cathrynlavery.github.io/diagram-design](https://cathrynlavery.github.io/diagram-design/) — or open [`skills/diagram-design/assets/index.html`](skills/diagram-design/assets/index.html) locally to flip through every diagram with light / dark / full-editorial tabs.
 
 ---
 
 ## Install
+
+Official builds come only from this repository. LittleMight, Cathryn Lavery's company, publishes the plugin directory listings; a listing under any other name is an unofficial copy. [PRIVACY.md](PRIVACY.md) lists what the skill sends over the network.
 
 **Claude Code:**
 
@@ -128,6 +151,15 @@ codex plugin add diagram-design@diagram-design
 
 Codex refreshes configured Git marketplaces at startup. To fetch immediately, run `codex plugin marketplace upgrade diagram-design` and start a new session.
 
+**GitHub Copilot:**
+
+```bash
+copilot plugin marketplace add cathrynlavery/diagram-design
+copilot plugin install diagram-design@diagram-design
+```
+
+Copilot installs the shared Diagram Design skill plus its doctor, export, import, and profile capabilities from the existing repository marketplace. Confirm discovery with `copilot skill list` (or `/skills` in an interactive session), then ask for a diagram in natural language. To fetch a merged update, run `copilot plugin marketplace update diagram-design`, then `copilot plugin update diagram-design@diagram-design`.
+
 **Factory Droid:**
 
 ```bash
@@ -145,7 +177,7 @@ Droid tracks Git plugins by commit rather than the manifest's display version. T
 pi install https://github.com/cathrynlavery/diagram-design
 ```
 
-Run `/reload` in an open Pi session. Pi makes the skill available for matching diagram requests; use `/skill:diagram-design` to invoke it explicitly. Pi also loads the `/export-diagram`, `/import-mermaid`, `/profile`, and `/doctor` prompt templates. The unpinned Git install is intentional: Pi has no automatic package refresh, so run `pi update --extensions` to pull merged updates.
+Run `/reload` in an open Pi session. Pi makes the skill available for matching diagram requests; use `/skill:diagram-design` to invoke it explicitly. Pi also loads the `/export-diagram`, `/import-mermaid`, `/import-excalidraw`, `/profile`, and `/doctor` prompt templates. The unpinned Git install is intentional: Pi has no automatic package refresh, so run `pi update --extensions` to pull merged updates.
 
 **Kiro:** Import the Agent Skill from the repository subdirectory URL:
 
@@ -173,15 +205,16 @@ pi install ~/code/diagram-design
 ln -s ~/code/diagram-design/skills/diagram-design ~/.claude/skills/diagram-design
 
 # Other Agent Skills hosts: create only the roots you use
-mkdir -p ~/.agents/skills ~/.cursor/skills ~/.cline/skills ~/.kiro/skills ~/.config/opencode/skills
+mkdir -p ~/.agents/skills ~/.cursor/skills ~/.cline/skills ~/.kiro/skills ~/.config/opencode/skills ~/.copilot/skills
 ln -s ~/code/diagram-design/skills/diagram-design ~/.agents/skills/diagram-design
 ln -s ~/code/diagram-design/skills/diagram-design ~/.cursor/skills/diagram-design
 ln -s ~/code/diagram-design/skills/diagram-design ~/.cline/skills/diagram-design
 ln -s ~/code/diagram-design/skills/diagram-design ~/.kiro/skills/diagram-design
 ln -s ~/code/diagram-design/skills/diagram-design ~/.config/opencode/skills/diagram-design
+ln -s ~/code/diagram-design/skills/diagram-design ~/.copilot/skills/diagram-design
 ```
 
-The shared skill lives at `skills/diagram-design/`. Pi discovers it through the repo's standard `skills/` package directory; Claude Code, Codex, Factory Droid, and other Agent Skills-compatible tools use the same files.
+The shared skill lives at `skills/diagram-design/`. Pi discovers it through the repo's standard `skills/` package directory; Claude Code, GitHub Copilot, Codex, Factory Droid, and other Agent Skills-compatible tools use the same files.
 
 ---
 
@@ -231,7 +264,7 @@ Every diagram template gives the inline SVG an accessible name and description: 
 
 ### Manual override
 
-Prefer to set tokens by hand? Open [`skills/diagram-design/references/style-guide.md`](skills/diagram-design/references/style-guide.md) and edit the table. Everything downstream reads from there — all 39 diagrams, the annotation primitive, and the gallery all inherit semantic role names (`accent`, not `#eb6c36`).
+Prefer to set tokens by hand? Open [`skills/diagram-design/references/style-guide.md`](skills/diagram-design/references/style-guide.md) and edit the table. Everything downstream reads from there — every diagram, the annotation primitive, and the gallery all inherit semantic role names (`accent`, not `#eb6c36`).
 
 ### First-run gate
 
@@ -252,7 +285,7 @@ The profile library is shared across Claude Code, Codex, Factory Droid, and Pi. 
 ## Quickstart
 
 ```bash
-# From a cloned checkout, open the gallery to see all 39 diagrams
+# From a cloned checkout, open the gallery to see every diagram
 open skills/diagram-design/assets/index.html       # macOS
 xdg-open skills/diagram-design/assets/index.html  # Linux
 
@@ -276,15 +309,15 @@ cp skills/diagram-design/assets/template-motion.html my-diagram.html # optional 
 
 ### Semantic patterns and optional motion
 
-When behavior matters, the skill chooses a semantic pattern first and a visual type second. The seven routed patterns cover fan-in queues and bottlenecks, repeated stage slots, unstructured-input transformation, paired policy traces, secure paved roads, governance catalogs, and compensating security layers. Each pattern defines its triggers, primitives, budget, anti-patterns, static fallback, and nearest visual type in [`semantic-patterns.md`](skills/diagram-design/references/semantic-patterns.md).
+When behavior matters, the skill chooses a semantic pattern first and a visual type second. The nine routed patterns cover fan-in queues and bottlenecks, repeated stage slots, unstructured-input transformation, paired policy traces, secure paved roads, governance catalogs, compensating security layers, traceable block decomposition, and lifecycle phase maps. Each pattern defines its triggers, primitives, budget, anti-patterns, static fallback, and nearest visual type in [`semantic-patterns.md`](skills/diagram-design/references/semantic-patterns.md).
 
 Motion is optional and does not create another visual type. [`animation.md`](skills/diagram-design/references/animation.md) defines `none`, `reveal`, `step`, and `loop` modes with a complete static first frame, deterministic timing, and controls when interaction is available. Reduced-motion output shows the complete static frame and hides/disables playback controls. Motion HTML uses the exact reviewed controller from `template-motion.html`; arbitrary or modified inline scripts, remote assets, CSS imports, and executable HTML attributes are rejected. The default is `none`: ordinary output remains static and script-free. [`example-policy-trace-animated.html`](skills/diagram-design/assets/example-policy-trace-animated.html) is the self-contained interactive example.
 
 ---
 
-## Import from draw.io or Mermaid
+## Import from draw.io, Mermaid, or Excalidraw
 
-Already have diagrams in draw.io / diagrams.net or Mermaid? Point the skill at the source and it **redraws** them — same content, this design system, at whatever the destination needs.
+Already have diagrams in draw.io / diagrams.net, Mermaid, or Excalidraw? Point the skill at the source and it **redraws** them — same content, this design system, at whatever the destination needs.
 
 [![Redrawn from a .drawio file](docs/screenshots/thumbs/import-drawio.webp)](docs/screenshots/import-drawio.png)
 
@@ -296,12 +329,14 @@ Already have diagrams in draw.io / diagrams.net or Mermaid? Point the skill at t
 /diagram-design:import-drawio platform.drawio --detail=faithful --format=png --page=all
 /diagram-design:import-mermaid README.md --diagram=all
 /diagram-design:import-mermaid architecture.mmd --size=slide-16x9 --detail=simplified
+/diagram-design:import-excalidraw whiteboard.excalidraw --size=slide-16x9 --detail=simplified
 ```
 
-Or just ask: *"redraw this drawio file for my deck"*, *"make this Mermaid block editorial"*, or *"この Mermaid をスライド用にきれいにして"*.
+Or just ask: *"redraw this drawio file for my deck"*, *"make this Mermaid block editorial"*, *"make this whiteboard sketch presentable"*, or *"この Mermaid をスライド用にきれいにして"*.
 
 Reads the common containers draw.io writes — `.drawio`, `.drawio.xml`, `.drawio.png` (embedded diagram), and `.drawio.svg` — including compressed payloads that look like base64 garbage in an editor.
-For Mermaid, it accepts `.mmd`, `.mermaid`, and one or more fenced `mermaid` blocks in Markdown. It parses text only: no rendering, JavaScript, browser, network, or followed click targets.
+For Mermaid, it accepts `.mmd`, `.mermaid`, and one or more fenced `mermaid` blocks in Markdown.
+For Excalidraw, it accepts `.excalidraw` and `.excalidraw.json` scene files (not `.excalidraw.png`/`.excalidraw.svg` exports). It parses text only: no rendering, JavaScript, browser, network, or followed click targets.
 
 ### The four dials
 
@@ -310,7 +345,7 @@ The point isn't conversion, it's **fitting the output to where it's going**. Sam
 | Dial | Options | What it changes |
 |---|---|---|
 | **Format** | `html` · `svg` · `png` · `html+png` | The deliverable. SVG for Figma, PNG for slides, HTML for the web. |
-| **Size** | `doc-inline` · `doc-wide` · `slide-16x9` · `slide-4x3` · `social-og` · `social-square` · `print-a4-landscape` · `print-letter-landscape` · `fit` | The `viewBox` **and the type ramp** — a projected slide gets 16px node names, not 12px. |
+| **Size** | `doc-inline` · `doc-wide` · `slide-16x9` · `slide-4x3` · `social-og` · `social-square` · `print-a4-landscape` · `print-a3-landscape` · `print-letter-landscape` · `fit` | The `viewBox` **and the type ramp** — a projected slide gets 16px node names, not 12px. |
 | **Detail** | `faithful` (≤24 nodes, zoned) · `balanced` (≤12) · `simplified` (≤7) | How much of the source survives, via a fixed degrade ladder — decorations, then duplicates, then leaf clusters, then infrastructure. |
 | **Audience** | `engineer` · `mixed` · `executive` | The *wording*, not the count. `Auth Service / JWT · RS256 · :8443` → `Auth Service / token check` → `Sign-in`. |
 
@@ -323,7 +358,7 @@ Dropped:   1 sticky note ("legacy path, to be retired") — unconnected in sourc
 Kept in full: the request path (Web/Mobile → Gateway → Orders → Postgres)
 ```
 
-What never carries over: source or renderer coordinates, source palette, source fonts, draw.io's diagonal connector spaghetti, or Mermaid's automatic layout. What always does: components, relationships, grouping, and direction. See [`references/import-drawio.md`](skills/diagram-design/references/import-drawio.md), [`references/import-mermaid.md`](skills/diagram-design/references/import-mermaid.md), and [`references/output-spec.md`](skills/diagram-design/references/output-spec.md).
+What never carries over: source or renderer coordinates, source palette, source fonts, draw.io's diagonal connector spaghetti, Mermaid's automatic layout, or Excalidraw's hand-drawn geometry. What always does: components, relationships, grouping, and direction. See [`references/import-drawio.md`](skills/diagram-design/references/import-drawio.md), [`references/import-mermaid.md`](skills/diagram-design/references/import-mermaid.md), [`references/import-excalidraw.md`](skills/diagram-design/references/import-excalidraw.md), and [`references/output-spec.md`](skills/diagram-design/references/output-spec.md).
 
 ---
 
@@ -337,6 +372,7 @@ Diagrams ship as self-contained HTML, but you can export the diagram itself for 
 /export-diagram path/to/diagram.html
 /export-diagram path/to/diagram.html --svg-only
 /export-diagram path/to/diagram.html --png-only --scale=3
+/export-diagram path/to/diagram.html --registry
 ```
 
 **Claude Code:**
@@ -345,6 +381,7 @@ Diagrams ship as self-contained HTML, but you can export the diagram itself for 
 /diagram-design:export-diagram path/to/diagram.html
 /diagram-design:export-diagram path/to/diagram.html --svg-only
 /diagram-design:export-diagram path/to/diagram.html --png-only --scale=3
+/diagram-design:export-diagram path/to/diagram.html --registry
 ```
 
 Or just ask in natural language:
@@ -358,6 +395,8 @@ Or just ask in natural language:
 - **PNG** — rasterizes the diagram via Playwright at 2× by default. One-time setup: `pip install playwright && playwright install chromium`.
 
 Both formats are diagram-only — editorial cards and headers from `-full` variants aren't included. For a screenshot of the full editorial layout, use your browser's print-to-PDF or full-page screenshot. See [`skills/diagram-design/references/export.md`](skills/diagram-design/references/export.md) for the full procedure.
+
+- **`--registry`** — for diagrams using the [traceable block decomposition](skills/diagram-design/references/semantic-patterns.md) pattern, also emits `<basename>.registry.json`, a structured projection of every block's `data-block-*` metadata. Combine with either raster format or run alone. See [`skills/diagram-design/references/export-registry.md`](skills/diagram-design/references/export-registry.md).
 
 For motion-enabled HTML, export the explicit final state: open `?motion=static`, wait for `document.fonts.ready`, and confirm the motion root has `data-frame="static"` before capture. Use `?motion=step&step=N` only when a named intermediate frame was requested.
 
@@ -377,11 +416,13 @@ diagram-design/
 │   ├── export-diagram.md            — plugin export command
 │   ├── import-drawio.md             — plugin draw.io import command
 │   ├── import-mermaid.md            — plugin Mermaid import command
+│   ├── import-excalidraw.md         — plugin Excalidraw import command
 │   ├── profile.md                   — plugin client-profile command
 │   └── doctor.md                    — plugin environment diagnostics command
 ├── prompts/
 │   ├── export-diagram.md            — Pi `/export-diagram` prompt template
 │   ├── import-mermaid.md            — Pi Mermaid import prompt template
+│   ├── import-excalidraw.md         — Pi Excalidraw import prompt template
 │   ├── profile.md                   — Pi `/profile` prompt template
 │   └── doctor.md                    — Pi `/doctor` diagnostics prompt template
 ├── skills/
@@ -395,9 +436,12 @@ diagram-design/
 │       │   ├── profiles.md          — named client profiles + project markers
 │       │   ├── import-drawio.md     — draw.io redraw procedure
 │       │   ├── import-mermaid.md    — Mermaid redraw procedure
+│       │   ├── import-excalidraw.md — Excalidraw redraw procedure
 │       │   ├── output-spec.md       — format × size × detail level
 │       │   ├── export.md            — SVG / PNG export + sizing
+│       │   ├── export-registry.md   — block-metadata JSON sidecar export
 │       │   ├── type-architecture.md
+│       │   ├── type-architecture-delta.md
 │       │   ├── type-flowchart.md
 │       │   ├── type-sequence.md
 │       │   ├── type-state.md
@@ -409,6 +453,8 @@ diagram-design/
 │       │   ├── type-tree.md
 │       │   ├── type-org-chart.md
 │       │   ├── type-layers.md
+│       │   ├── type-exploded.md
+│       │   ├── type-axonometric-plan.md
 │       │   ├── type-venn.md
 │       │   ├── type-pyramid.md
 │       │   ├── type-sankey.md
@@ -421,27 +467,31 @@ diagram-design/
 │       │   ├── type-uml-class.md
 │       │   ├── type-story-map.md
 │       │   ├── type-db-schema.md
+│       │   ├── primitives-core.md
+│       │   ├── layout-budget.md
 │       │   ├── primitive-annotation.md
 │       │   ├── primitive-sketchy.md
 │       │   └── primitive-terminal.md
 │       ├── scripts/
 │       │   ├── drawio_extract.py    — draw.io → structured IR
 │       │   ├── mermaid_extract.py   — Mermaid → structured IR
+│       │   ├── excalidraw_extract.py — Excalidraw → structured IR
 │       │   └── self_check.py        — packaged output self-check (runs installed)
 │       └── assets/
 │           ├── index.html           — live gallery, tabbed
 │           ├── template*.html       — scaffolds for new diagrams
-│           ├── example-<type>.html  — 3 variants × 39 types
+│           ├── example-<type>.html  — 3 variants per type
 │           ├── example-loop-terminal.html
 │           ├── example-quadrant-consultant.html
 │           ├── example-import-drawio.html
 │           ├── example-import-mermaid.html
+│           ├── example-import-excalidraw.html
 │           ├── example-policy-trace-animated.html
 │           └── example-sequence-oauth*.html
 ├── scripts/
 │   ├── build-readme-thumbs.py       — regenerates docs/screenshots/thumbs/
 │   ├── bump-plugin-version.py       — synchronized Claude/Codex/Factory version bump
-│   ├── render-canonical-screenshots.py — deterministic 39-type PNG catalog renderer
+│   ├── render-canonical-screenshots.py — deterministic per-type PNG catalog renderer
 │   ├── verify-screenshot-freshness.py — source + screenshot digest gate
 │   ├── verify-plugin-package.py     — version + marketplace package gate
 │   ├── test-plugin-package.py       — adversarial package-gate tests
@@ -452,11 +502,15 @@ diagram-design/
 │   ├── test-verify-polar.py         — polar gate adversarial tests
 │   ├── verify-sankey.py             — Sankey conservation + geometry gate
 │   ├── test-verify-sankey.py        — Sankey gate adversarial tests
+│   ├── verify-waterfall.py          — waterfall running-total + bridge gate
+│   ├── test-verify-waterfall.py     — waterfall gate adversarial tests
 │   ├── test-verify-docs-sync.py     — docs/routing-surface gate tests
 │   └── fixtures/
 │       ├── sample-flowchart.mmd
 │       ├── sample-readme-with-mermaid.md
-│       └── sample-adversarial.mmd
+│       ├── sample-adversarial.mmd
+│       ├── sample-whiteboard.excalidraw
+│       └── sample-adversarial.excalidraw
 ├── docs/cookbook.md                 — operator recipes for editable installs and common tasks
 ├── docs/adr/                        — short records of settled design decisions
 ├── docs/screenshots/                — full-resolution images + source-digest manifest.json
@@ -478,9 +532,14 @@ container formats and checks the references stay in sync.
 If you touch the Mermaid import path, `python3 scripts/verify-mermaid-import.py` must also pass —
 it covers all supported grammars, multi-block Markdown, adversarial labels, trust-boundary
 behavior, resource caps, named failures, and reference/command wiring.
+If you touch the Excalidraw import path, `python3 scripts/verify-excalidraw-import.py` must also
+pass — it covers scene parsing, bound labels, groups and frames, adversarial labels,
+trust-boundary behavior, resource caps, named failures, and reference/command wiring.
 
 Label placement is gated geometrically: `python3 scripts/verify-geometry.py --all` fails CI when a label mask overlaps a node declared later in the document, because the node fill would clip the text at render time. `python3 scripts/test-verify-geometry.py` keeps that checker honest in both directions.
+Diagrams using the traceable block decomposition pattern get a structural gate on top of that: `python3 scripts/verify-block-registry.py --all` fails CI on a duplicate `data-block-id`, a `data-block-parent` that doesn't resolve to another block in the same file, a cycle in the parent chain, a blank `data-block-id`, or a missing or blank `data-block-name` — the same defects that would make `--registry`'s exported JSON (see [`export-registry.md`](skills/diagram-design/references/export-registry.md)) misrepresent the tree it claims to describe. `python3 scripts/test-verify-block-registry.py` keeps that checker honest in both directions.
 Treemaps get a second geometric gate, because their whole claim is that area *is* the encoding: `python3 scripts/verify-treemap.py --all` fails CI when a cell's share of the drawn area doesn't match the value printed inside it, or when a label overruns the cell it names. It measures area error as a *relative* figure — an absolute one passes exactly the small cells most likely to be wrong. `python3 scripts/test-verify-treemap.py` keeps it honest in both directions.
+Waterfalls get the same treatment, because their whole claim is that the running total is conserved: `python3 scripts/verify-waterfall.py --all` fails CI when the declared start, deltas, and end don't reconcile, when a bridge bar is drawn anywhere other than its two running levels on the shared scale, when a carry connector is missing or sits at the wrong level, when a delta prints without an explicit sign, or when the two directions collapse into one fill. `python3 scripts/test-verify-waterfall.py` keeps it honest in both directions.
 Docs and routing surfaces are themselves gated: `python3 scripts/verify-docs-sync.py` fails CI if the SKILL.md description loses a type's lexical hook, the gallery can't reach a shipped example, the README tree names a file that doesn't exist, a relative reference link is broken, a scanner-visible support path is not shipped inside the skill package, or any command/prompt surface drifts from its routed reference. `python3 scripts/test-verify-docs-sync.py` exercises those newer checks adversarially, including the strict-bundler behavior used by Hermes Agent. The skill also ships `skills/diagram-design/scripts/self_check.py` — a distilled output checker installed agents can run on their own generated diagrams; `python3 scripts/test-self-check.py` keeps it honest. Settled design decisions (why one pinned controller, why patterns never add types, the autoplay policy, the SKILL.md byte cap, why label placement is verified geometrically, and why client profiles use marker-first resolution) live as short ADRs in `docs/adr/` — read them before relitigating one, add one when you settle a new policy.
 
 All pull requests and pushes are automatically validated across Linux, Windows, and macOS runners via GitHub Actions CI (`.github/workflows/ci.yml`).
@@ -530,6 +589,9 @@ At startup, the agent sees only the skill name and description. When a request m
 |---|---|
 | "Make me a flowchart" | `SKILL.md` + `references/type-flowchart.md` |
 | "Build an architecture diagram" | `SKILL.md` + `references/type-architecture.md` |
+| "Show what was added, removed, changed, moved, or rewired in this migration" | `SKILL.md` + `references/type-architecture-delta.md` |
+| "Show what's inside this device, exploded" | `SKILL.md` + `references/type-exploded.md` |
+| "Draw our office floor plan" | `SKILL.md` + `references/type-axonometric-plan.md` |
 | "Compare why these two policy requests differ" | `SKILL.md` + `references/semantic-patterns.md` + `references/type-flowchart.md` |
 | "Animate that policy trace" | Prior selection + `references/animation.md` |
 | "Onboard this skill to my site" | `SKILL.md` + `references/onboarding.md` + `references/style-guide.md` |
@@ -539,7 +601,8 @@ At startup, the agent sees only the skill name and description. When a request m
 | "Give me a terminal / CLI-window version" | `SKILL.md` + `references/primitive-terminal.md` |
 | "Redraw this .drawio file for my deck" | `SKILL.md` + `references/import-drawio.md` + `references/output-spec.md` + the chosen type's reference |
 | "Redraw this Mermaid block for my deck" | `SKILL.md` + `references/import-mermaid.md` + `references/output-spec.md` + the chosen type's reference |
-| Routine static diagram-making (any of the 39 visual types) | Only `SKILL.md` + that one type's reference |
+| "Redraw this Excalidraw sketch for my deck" | `SKILL.md` + `references/import-excalidraw.md` + `references/output-spec.md` + the chosen type's reference |
+| Routine static diagram-making (any visual type) | `SKILL.md` + that one type's reference, plus `references/primitives-core.md` or `references/layout-budget.md` only when it needs exact markup or a per-type budget row |
 
 No matter how many types exist, the agent only reads the one you need. Add a new type tomorrow and nothing else changes.
 
@@ -547,7 +610,7 @@ No matter how many types exist, the agent only reads the one you need. Add a new
 
 ## It's working if…
 
-- A routine request ("make me a flowchart") loads `SKILL.md` plus exactly one type reference — nothing else.
+- A routine request ("make me a flowchart") loads `SKILL.md`, exactly one type reference, and at most the two core references (`primitives-core.md`, `layout-budget.md`), and nothing else.
 - Before drawing, the agent states the chosen type, pattern, size, and planned cuts, then renders.
 - The output is one `.html` file that opens double-clicked, offline, with no network requests beyond Google Fonts.
 - Screen readers announce the diagram's title and description; `prefers-reduced-motion` shows the complete static frame.
@@ -566,7 +629,7 @@ One accent color, 1–2 focal elements per diagram. Three font families: Instrum
 
 - **Annotation callout** — italic Instrument Serif + dashed Bézier leader, for editorial asides that sit in the margins. See [`skills/diagram-design/references/primitive-annotation.md`](skills/diagram-design/references/primitive-annotation.md).
 - **Sketchy filter** — SVG turbulence + displacement map for a hand-drawn variant. Good for essays, not for technical docs. See [`skills/diagram-design/references/primitive-sketchy.md`](skills/diagram-design/references/primitive-sketchy.md).
-- **Icon set** — 55 monochrome IT/cloud icons (laptop, phone, user, server, database, Docker, Kubernetes, AWS, Azure, GitHub, Postgres…) for richer architecture and sequence diagrams. Stroked icons from [Tabler Icons](https://tabler.io/icons) (MIT); brand silhouettes from [Simple Icons](https://simpleicons.org) (CC0). Each icon uses `currentColor` so it inherits the editorial skin or your onboarded brand. See [`skills/diagram-design/references/primitive-icons.md`](skills/diagram-design/references/primitive-icons.md); browse the [gallery](skills/diagram-design/assets/icons.html). Regenerate with `python scripts/build-icons.py`.
+- **Icon set** — 87 monochrome IT/cloud icons (laptop, phone, user, server, database, Docker, Kubernetes, AWS, Azure, GitHub, Postgres…) for richer architecture and sequence diagrams. Stroked icons from [Tabler Icons](https://tabler.io/icons) (MIT); brand silhouettes from [Simple Icons](https://simpleicons.org) (CC0). Each icon uses `currentColor` so it inherits the editorial skin or your onboarded brand. See [`skills/diagram-design/references/primitive-icons.md`](skills/diagram-design/references/primitive-icons.md); browse the [gallery](skills/diagram-design/assets/icons.html). Regenerate with `python scripts/build-icons.py`.
 
 ---
 

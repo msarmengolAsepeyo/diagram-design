@@ -47,25 +47,27 @@ jobs:
         with:
           python-version: "3.12"
 
-      # Skip when the tip of main already carries a version change (a manual
-      # bump, or this workflow's own commit triggering another run).
+      # Skip only when the tip of main changes the synchronized version fields
+      # (a manual bump, or this workflow's own commit triggering another run).
+      # Feature merges may legitimately update other manifest metadata.
       - name: Check whether main already bumped
         id: guard
         shell: bash
         run: |
+          set -euo pipefail
           source_sha=$(git rev-parse HEAD)
           echo "source_sha=${source_sha}" >> "$GITHUB_OUTPUT"
-          if git rev-parse --verify --quiet HEAD^ >/dev/null \
-            && ! git diff --quiet HEAD^ HEAD -- \
-              .claude-plugin/plugin.json \
-              .codex-plugin/plugin.json \
-              .factory-plugin/plugin.json; then
+          version_changed=false
+          if git rev-parse --verify --quiet HEAD^ >/dev/null; then
+            version_changed=$(python3 scripts/plugin_version_history.py changed HEAD^ HEAD)
+          fi
+          if [ "$version_changed" = "true" ]; then
             echo "should_bump=false" >> "$GITHUB_OUTPUT"
           else
             echo "should_bump=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # Inspect every commit since the previous manifest bump. This preserves
+      # Inspect every commit since the previous version bump. This preserves
       # the strongest release label when multiple merges coalesce into one run.
       - name: Determine bump size across all unversioned merges
         if: steps.guard.outputs.should_bump == 'true'
@@ -76,14 +78,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          last_bump=$(git log -1 --format=%H "$SOURCE_SHA" -- \
-            .claude-plugin/plugin.json \
-            .codex-plugin/plugin.json \
-            .factory-plugin/plugin.json)
-          if [ -z "$last_bump" ]; then
-            echo "No previous manifest bump found" >&2
-            exit 1
-          fi
+          last_bump=$(python3 scripts/plugin_version_history.py last-bump "$SOURCE_SHA")
 
           part=patch
           while IFS= read -r commit; do
@@ -125,14 +120,19 @@ jobs:
           set -euo pipefail
           python3 scripts/verify-plugin-package.py "$SOURCE_SHA"
 
-          expected=$(printf '%s\n' \
+          expected_without_skill=$(printf '%s\n' \
+            .claude-plugin/plugin.json \
+            .codex-plugin/plugin.json \
+            .factory-plugin/plugin.json | LC_ALL=C sort)
+          expected_with_skill=$(printf '%s\n' \
             .claude-plugin/plugin.json \
             .codex-plugin/plugin.json \
             .factory-plugin/plugin.json \
             skills/diagram-design/SKILL.md | LC_ALL=C sort)
           actual=$(git diff --name-only | LC_ALL=C sort)
-          if [ "$actual" != "$expected" ]; then
-            echo "Bump changed files outside the release allowlist:" >&2
+          if [ "$actual" != "$expected_without_skill" ] \
+            && [ "$actual" != "$expected_with_skill" ]; then
+            echo "Bump changed unexpected files or omitted a required manifest:" >&2
             git diff --name-only >&2
             exit 1
           fi
@@ -199,13 +199,18 @@ jobs:
         run: |
           set -euo pipefail
           patch=_version-bump/version-bump.patch
-          expected=$(printf '%s\n' \
+          expected_without_skill=$(printf '%s\n' \
+            .claude-plugin/plugin.json \
+            .codex-plugin/plugin.json \
+            .factory-plugin/plugin.json | LC_ALL=C sort)
+          expected_with_skill=$(printf '%s\n' \
             .claude-plugin/plugin.json \
             .codex-plugin/plugin.json \
             .factory-plugin/plugin.json \
             skills/diagram-design/SKILL.md | LC_ALL=C sort)
           patch_paths=$(git apply --numstat "$patch" | cut -f3- | LC_ALL=C sort)
-          if [ "$patch_paths" != "$expected" ]; then
+          if [ "$patch_paths" != "$expected_without_skill" ] \
+            && [ "$patch_paths" != "$expected_with_skill" ]; then
             echo "Artifact contains paths outside the release allowlist" >&2
             exit 1
           fi
@@ -213,7 +218,7 @@ jobs:
           git apply --check --whitespace=error "$patch"
           git apply --index --whitespace=error "$patch"
           staged_paths=$(git diff --cached --name-only | LC_ALL=C sort)
-          if [ "$staged_paths" != "$expected" ] \
+          if [ "$staged_paths" != "$patch_paths" ] \
             || [ -n "$(git diff --cached --summary)" ]; then
             echo "Artifact changed unexpected paths or file modes" >&2
             exit 1
